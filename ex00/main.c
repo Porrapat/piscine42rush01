@@ -1,22 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmaythaw <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/31 15:01:25 by mmaythaw          #+#    #+#             */
+/*   Updated: 2021/10/31 15:01:29 by mmaythaw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "functions.h"
 
-int solve(int tab[4][4], int entry[16], int pos)
+int	solve(int tab[4][4], int entry[16], int pos)
 {
-	int size;
+	int	size;
 
 	if (pos == 16)
 		return (1);
 	size = 0;
 	while (++size <= 4)
 	{
-		//checking if the number I want to place is correct
 		if (check_double(tab, pos, size) == 0)
 		{
 			tab[pos / 4][pos % 4] = size;
-			//checking if the tab is correct with the new number
 			if (check_case(tab, pos, entry) == 0)
 			{
-				//checking for next possibility
 				if (solve(tab, entry, pos + 1) == 1)
 					return (1);
 			}
@@ -24,14 +33,13 @@ int solve(int tab[4][4], int entry[16], int pos)
 				tab[pos / 4][pos % 4] = 0;
 		}
 	}
-	//did not find any solutions
 	return (0);
 }
 
-void display_solution(int tab[4][4])
+void	display_solution(int tab[4][4])
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < 4)
@@ -46,20 +54,27 @@ void display_solution(int tab[4][4])
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int tab[4][4] = {
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-	};
-	int *entry;
+	int	tab[4][4];
+	int	*entry;
+	int	i;
+	int	j;
 
+	i = 0;
+	j = 0;
+	while (i < 4)
+	{
+		while (j < 4)
+		{
+			tab[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
 	if (check(ac, av) == 1)
 		return (0);
 	entry = get_numbers(av[1]);
-
 	if (solve(tab, entry, 0) == 1)
 		display_solution(tab);
 	else
