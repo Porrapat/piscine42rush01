@@ -8,7 +8,7 @@ norminette:
 	-norminette ./ex00/main.c
 
 compile:	norminette
-	-gcc ./ex00/functions.h ./ex00/common.c ./ex00/parsing.c ./ex00/checkutil.c ./ex00/rules.c ./ex00/main.c -o ./ex00/main
+	-gcc ./ex00/functions.h ./ex00/common.c ./ex00/parsing.c ./ex00/checkutil.c ./ex00/rules.c ./ex00/main.c -o ./ex00/main -Wall -Werror -Wextra
 
 run:	compile
 	-./ex00/main "4 1 2 3 1 2 2 2 2 2 2 1 3 2 1 4"
