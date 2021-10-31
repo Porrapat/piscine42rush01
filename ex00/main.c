@@ -48,7 +48,10 @@ void	display_solution(int tab[4][4])
 		while (++j < 4)
 		{
 			ft_putnbr(tab[i][j]);
-			ft_putchar(' ');
+			if (j < 3)
+			{
+				ft_putchar(' ');
+			}
 		}
 		ft_putchar('\n');
 	}

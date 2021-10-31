@@ -11,10 +11,10 @@ compile:	norminette
 	-gcc ./ex00/functions.h ./ex00/common.c ./ex00/parsing.c ./ex00/checkutil.c ./ex00/rules.c ./ex00/main.c -o ./ex00/main -Wall -Werror -Wextra
 
 run:	compile
-	-./ex00/main "4 1 2 3 1 2 2 2 2 2 2 1 3 2 1 4"
+	-./ex00/main "4 1 2 3 1 2 2 2 2 2 2 1 3 2 1 4" | cat -e
 
 test:
-	-./ex00/main "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+	-./ex00/main "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2" | cat -e
 
 clean:
 	-rm -rf ./ex00/main
